@@ -169,3 +169,10 @@ WHERE CustomerName LIKE 'a%'
 
 DROP VIEW [Mera view hai ye]
 ```
+
+```sql
+
+SELECT SupplierName
+FROM Suppliers
+WHERE EXISTS (SELECT ProductName FROM Products WHERE Products.SupplierID = Suppliers.supplierID AND Price = 22); 
+```
