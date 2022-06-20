@@ -154,4 +154,18 @@ CREATE TABLE Persons (
 ALTER TABLE Persons Auto_Increment=100
 ```
 
+### Views
 
+```sql
+CREATE VIEW [Mera view hai ye] AS
+SELECT CustomerName,CustomerAddress
+FROM Customers
+WHERE CustomerName LIKE 'a%'
+
+CREATE OR REPLACE VIEW [Mera view hai ye] AS
+SELECT CustomerName
+FROM Customers
+WHERE CustomerName LIKE 'a%'
+
+DROP VIEW [Mera view hai ye]
+```
