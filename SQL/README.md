@@ -80,3 +80,91 @@ Pattern includes wildcards:
 - `[]` 	Represents any single character within the brackets
 - `^` 	Represents any character not in the bracket
 - `-` 	Represents any single character within the specified range
+
+### Inner Join/Join
+
+Joins the table on the basis of the match found in both table based on the condition 
+
+```SQL
+
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID; 
+```
+### Left Join & Right Join
+
+- Left Join => Inner Join+Extra records from the left table which do not found a match
+- Right Join => Inner Join+Extra records from the right table which do not found a match
+
+```SQL
+SELECT column
+FROM table1
+LEFT JOIN table2
+ON table1.column_name = table2.column_name;
+```
+
+```SQL
+SELECT column
+FROM table1
+RIGHT JOIN table2
+ON table1.column_name = table2.column_name;
+```
+
+### Full Join
+
+- Full Join => Inner Join+Extra records from the right table which do not found a match+Extra records from the left table which do not found a match
+
+```SQL
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID
+ORDER BY Customers.CustomerName;
+```
+
+### Self Join
+
+```SQL
+SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2
+FROM Customers A, Customers B
+WHERE A.CustomerID <> B.CustomerID
+AND A.City = B.City
+ORDER BY A.City;
+```
+
+### Natural Join
+
+```SQL
+SELECT Customers.CustomerName,Customers.CustomerAddress,Orders.Order
+FROM Customers
+NATURAL JOIN Orders;
+```
+
+### Cross Join
+
+Cartesian Product
+
+```SQL
+SELECT Customers.CustomerName,Customers.CustomerAddress,Orders.Order
+FROM Customers
+CROSS JOIN Orders;
+```
+
+### Union
+
+```SQL
+SELECT CustomerName
+FROM Customers
+UNION
+SELECT CustomerName
+FROM Orders
+```
+
+Also show duplicate entries
+
+```SQL
+SELECT CustomerName
+FROM Customers
+UNION ALL
+SELECT CustomerName
+FROM Orders
+```
