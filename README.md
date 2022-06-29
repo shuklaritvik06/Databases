@@ -1,2 +1,3 @@
 # Databases
-This will have my learnings of different databases
+
+Learnings and Projects of using Databases 
