@@ -1,0 +1,68 @@
+<%-include("partials/header")%>
+  <body>
+    <div class="container">
+    <header class="d-flex justify-content-between py-3 border-bottom">
+      <h1>Student Manage</h1>
+      <button class="btn btn-primary">Check Projects</button>
+  </header>
+  <form action="/" method="post" class="my-3">
+  <%-include("partials/studentForm")%>
+</form>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Student Data</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <form action="/?_method=PATCH" method="post">
+            <div class="form-group">
+              <label for="roleNum">Student Roll Number</label>
+              <input type="number" class="form-control" name="current" id="current" readonly>
+            </div>
+            <%-include("partials/studentForm")%>
+         </form>
+      </div>
+    </div>
+  </div>
+</div>
+    <%if(data.length!==0){%>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Roll Num</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">Delete</th>
+            <th scope="row">Update</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%for(let i=0;i<data.length;i++){%>
+            <tr>
+              <td><%=data[i].roll%></td>
+              <td><%=data[i].name%></td>
+              <td><%=data[i].email%></td>
+              <td><%=data[i].phone%></td>
+              <td><%=data[i].address%></td>
+              <td><%=data[i].birthday%></td>
+              <td><form action="/<%=data[i].roll%>?_method=DELETE" method="post"><input class="btn btn-danger" type="submit" value="Delete"></input></form></td>
+              <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="addId('<%=data[i].roll%>')">Update</button></td>
+            </tr>
+          <%}%>  
+        </tbody>
+      </table>
+    <%}%>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script>
+    function addId(id) {
+      document.getElementById("current").value = id;
+    }
+  </script>
+  </body>
+</html>
