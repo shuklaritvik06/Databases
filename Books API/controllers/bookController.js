@@ -18,11 +18,13 @@ function getBooks(req, res) {
 
 function getBook(req,res){
     const id = req.params.id;
+    console.log(id);
     const sql = `SELECT * FROM books WHERE id = ${id}`;
     db.get(sql,function(err,row){
         if(err){
             console.log(err);
         }else{
+            console.log(row);
             res.status(200).json(row);
         }
     })
@@ -42,7 +44,8 @@ function insertBook(req, res) {
 }
 
 function updateBook(req, res) {
-  const { id, updateKey } = req.body;
+  const id =  req.params.id;
+  const updateKey = req.body;
   Object.keys(updateKey).forEach((key) => {
     const sql = `UPDATE books SET ${key} = ? WHERE id = ?`;
     const values = [updateKey[key], id];

@@ -4,9 +4,9 @@ const router = express.Router();
 
 router.get("/",getHomePage);
 router.get("/api/all",getBooks);
-router.get("/api/:id",getBook);
+router.get("/api/get/:id",getBook);
 router.post("/api",insertBook);
-router.put("/api",updateBook);
+router.put("/api/update/:id",updateBook);
 router.delete("/api",deleteBook);
 
 module.exports = router;

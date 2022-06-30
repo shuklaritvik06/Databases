@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const router = require("./routes/bookRoutes");
-const PORT =8000 || process.env.PORT;
+const PORT = 3001 || process.env.PORT;
 const app = express();
 
 app.use(cors());
