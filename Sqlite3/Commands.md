@@ -4,6 +4,8 @@
 - DROP TABLE database_name.table_name;
 - INSERT INTO tableName (columnName,.....) VALUES(values...,...);
 - INSERT INTO tableName VALUES (values);
+- UPDATE tableName SET columnName=value WHERE columnName=value
+- DELETE tableName WHERE columname=value
 
 
 
@@ -12,3 +14,5 @@
 - .databases
 - .tables
 - .schema tablename
+- .shell clear/cls
+- .schema (All tables)
