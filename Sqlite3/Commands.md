@@ -16,3 +16,5 @@
 - .schema tablename
 - .shell clear/cls
 - .schema (All tables)
+- .header on
+- .once location
