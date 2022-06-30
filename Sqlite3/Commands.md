@@ -5,7 +5,7 @@
 - INSERT INTO tableName (columnName,.....) VALUES(values...,...);
 - INSERT INTO tableName VALUES (values);
 - UPDATE tableName SET columnName=value WHERE columnName=value
-- DELETE tableName WHERE columname=value
+- DELETE FROM tableName WHERE columname=value
 
 
 
