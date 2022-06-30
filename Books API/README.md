@@ -80,7 +80,7 @@ Parameters are key value pairs whatever you want to update title,author,or year
 
 ```json
 { 
-message: "Book updated successfully" 
+ "message": "Book updated successfully" 
 }
 ```
 
@@ -96,5 +96,7 @@ Parameter:
 Response
 
 ```json
-{ message: "Book deleted successfully" }
+{ 
+ "message": "Book deleted successfully" 
+ }
 ```
