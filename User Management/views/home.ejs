@@ -1,0 +1,16 @@
+<%-include("partials/header")%>
+<body>
+  <div class="container">
+    <%-include("partials/navbar")%>
+    <div id="formContainer" class="my-3">
+    <form action="/" method="post">
+        <input type="number" placeholder="Enter id" class="form-control mb-3" name="id">
+        <input type="text" name="name" id="name" placeholder="Enter your Name" class="form-control mb-3" required>
+        <input type="email" name="email" id="email" placeholder="Enter your Email" class="form-control mb-3" required>
+        <input type="number" name="number" id="number" placeholder="Enter your Number" class="form-control mb-3" required>
+        <button id="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+  </div>
+</body>
+</html>
