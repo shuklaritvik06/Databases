@@ -1,0 +1,2 @@
+- config set requirepass Password
+- auth Password

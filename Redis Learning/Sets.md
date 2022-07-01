@@ -1,0 +1,9 @@
+- sadd key value value ....
+- scard key
+- sismember key value
+- smember key
+- sdiff key key2
+- sinter key key2
+- sinterstore newKey key key2
+- sdiffstore newKey key key2
+- sunion key key

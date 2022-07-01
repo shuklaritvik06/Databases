@@ -1,0 +1,5 @@
+- HSET key field value
+- HSET key field
+- HGETALL key
+- HDEL key field
+- HEXISTS key field

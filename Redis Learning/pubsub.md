@@ -1,0 +1,6 @@
+- subscribe channelName
+- publish channelName message
+- psubscribe pattern
+- pubsub channels
+- pubsub numsub channelName
+- pubsub numpat
