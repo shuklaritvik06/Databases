@@ -1,0 +1,7 @@
+- zadd key score value
+- zrange key start stop
+- zcard key
+- zcount key start end
+- zrem key value
+- zrevrange key start stop
+- zincrby key increment member

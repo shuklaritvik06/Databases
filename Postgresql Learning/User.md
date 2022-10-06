@@ -1,0 +1,15 @@
+- sudo su - username
+- sudo -i -u username
+- psql
+- \l => list all databases
+- \c => connect to a database
+- \q => quit
+- \e => Edit command in your editor
+- \d => describe a table
+- \dt => list available tables
+- \du => list available users
+- \i filename
+- ALTER USER USERNAME WITH PASSWORD 'password';
+- CREATE USER USERNAME WITH PASSWORD 'password';
+- DROP USER USERNAME;
+- ALTER USER USERNAME WITH SUPERUSER;

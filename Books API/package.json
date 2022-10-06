@@ -1,0 +1,19 @@
+{
+  "name": "books-api",
+  "version": "1.0.0",
+  "description": "Books API using SQlite3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "sqlite3": "^5.0.8",
+    "swagger-ui-express": "^4.4.0"
+  }
+}

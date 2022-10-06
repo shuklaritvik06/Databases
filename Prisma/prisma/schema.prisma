@@ -1,0 +1,72 @@
+// We can have multiple generators on usage
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// This is for connecting to the db so we can have only one datasource
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Every model in prisma must have a id
+
+model User {
+  id              Int         @id @default(autoincrement())
+  name            String
+  email           String?     @unique
+  password        String
+  role            Role        @default(USER)
+  // largeNum        BigInt
+  // preferences     Json
+  writtenPosts    Post[]      @relation("WrittenPost")
+  favoritedPosts  Post[]      @relation("FavoritedPost")
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  userPreferences Preference? @relation("Preference")
+
+  @@unique([name, email]) // Name and email  both should not be same for more than one record
+  @@index([name, email])
+}
+
+// One to Many relationship
+
+model Post {
+  id            Int      @id @default(autoincrement())
+  rating        Float    @default(0)
+  title         String
+  content       String
+  author        User     @relation("WrittenPost", fields: [authorId], references: [id])
+  authorId      Int
+  favoritedBy   User?    @relation("FavoritedPost", fields: [favoritedById], references: [id])
+  favoritedById Int?
+  published     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// Many to Many relationship
+
+model Category {
+  id String @id @default(uuid())
+}
+
+// One to One relationship
+
+model Preference {
+  id          String  @id @default(uuid())
+  emailUpdate Boolean @default(false)
+  userId      Int     @unique
+  user        User    @relation("Preference", fields: [userId], references: [id])
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+// We can also have a composite id
+
+// @@id([name,email])

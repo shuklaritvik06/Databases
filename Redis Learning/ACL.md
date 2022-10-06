@@ -1,0 +1,5 @@
+- ACL SETUSER ritvik on >secret allcommands allkeys
+- ACL WHOAMI
+- AUTH ritvik secret
+- ACL SETUSER ritvik on >secret nocommands -set +get
+- AUTH default ""

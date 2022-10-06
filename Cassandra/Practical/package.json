@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "node index.js",
+    "devStart": "nodemon index.js"
+  },
+  "dependencies": {
+    "cassandra-driver": "^4.6.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "cockroach",
+  "scripts": {
+    "start": "node index.js",
+    "devStart": "nodemon index.js"
+  },
+  "dependencies": {
+    "pg": "^8.8.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.2",
+    "nodemon": "^2.0.19"
+  }
+}
