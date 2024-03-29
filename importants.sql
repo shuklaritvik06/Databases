@@ -63,5 +63,15 @@ SELECT COUNT(*) FROM my_table;
 SELECT SUM(age) FROM my_table;
 SELECT MIN(age) FROM my_table;
 SELECT MAX(age) FROM my_table;
+
+-- LIKE, WILDCARDS
+
+SELECT * FROM my_table WHERE name LIKE '%a___b__[a-z]%';
 SELECT AVG(age) FROM my_table;
 SELECT COUNT(DISTINCT age) FROM my_table;
+
+-- SELECT 
+SELECT NAME, AGE || ' YEARS' AS AGE_DESCRIPTION FROM my_table;
+SELECT NAME, CONCAT(AGE,' YEARS') AS AGE_DESCRIPTION FROM my_table;
+SELECT * FROM my_table WHERE AGE > SOME (SELECT AGE FROM my_table WHERE AGE > 10);
+SELECT * FROM my_table WHERE AGE > ANY (SELECT AGE FROM my_table WHERE AGE > 10);
