@@ -30,3 +30,14 @@ ALTER TABLE my_table DROP CONSTRAINT my_table_fk;
 ALTER TABLE my_table ALTER COLUMN NAME SET DEFAULT 'RAMESH';
 ALTER TABLE my_table ALTER COLUMN NAME DROP DEFAULT;
 
+-- Distinct
+SELECT DISTINCT name FROM my_table;
+
+-- Order by
+select age FROM my_table order by age asc;
+
+-- AND
+SELECT * FROM my_table WHERE AGE=10 OR AGE=12;
+SELECT * FROM my_table WHERE AGE BETWEEN 10 AND 12;
+SELECT * FROM my_table WHERE AGE IS NOT NULL;
+SELECT * FROM my_table WHERE AGE IS NULL;
