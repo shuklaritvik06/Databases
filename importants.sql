@@ -36,8 +36,15 @@ SELECT DISTINCT name FROM my_table;
 -- Order by
 select age FROM my_table order by age asc;
 
--- AND
+-- AND OR NOT
 SELECT * FROM my_table WHERE AGE=10 OR AGE=12;
 SELECT * FROM my_table WHERE AGE BETWEEN 10 AND 12;
 SELECT * FROM my_table WHERE AGE IS NOT NULL;
 SELECT * FROM my_table WHERE AGE IS NULL;
+SELECT * FROM my_table WHERE AGE NOT BETWEEN 10 AND 12;
+SELECT * FROM my_table WHERE NOT AGE>12;
+SELECT * FROM my_table WHERE NOT AGE IN (10,12,3);
+
+-- Update
+UPDATE my_table SET AGE=13 WHERE id=1;
+
