@@ -34,7 +34,7 @@ ALTER TABLE my_table ALTER COLUMN NAME DROP DEFAULT;
 SELECT DISTINCT name FROM my_table;
 
 -- Order by
-select age FROM my_table order by age asc;
+SELECT age FROM my_table ORDER BY age ASC;
 
 -- AND OR NOT
 SELECT * FROM my_table WHERE AGE=10 OR AGE=12;
@@ -55,3 +55,13 @@ DELETE FROM my_table; --(delete all)
 
 -- Limit Offset and TOP ETC
 SELECT * FROM my_table LIMIT 2 OFFSET 1;
+SELECT * FROM my_table FETCH FIRST 3 ROWS ONLY;
+
+-- AGGREGATION
+
+SELECT COUNT(*) FROM my_table;
+SELECT SUM(age) FROM my_table;
+SELECT MIN(age) FROM my_table;
+SELECT MAX(age) FROM my_table;
+SELECT AVG(age) FROM my_table;
+SELECT COUNT(DISTINCT age) FROM my_table;
