@@ -78,7 +78,27 @@ SELECT * FROM my_table WHERE AGE > ANY (SELECT AGE FROM my_table WHERE AGE > 10)
 
 -- PROCEDURES
 
-
+CREATE OR REPLACE PROCEDURE update_salary(
+    IN employee_id_param INT,
+    IN new_salary_param DECIMAL,
+    OUT updated_salary_param DECIMAL
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    emp_id INT;
+    new_sal DECIMAL;
+BEGIN
+    emp_id := employee_id_param;
+    new_sal := new_salary_param; 
+    UPDATE employees
+    SET salary = new_sal
+    WHERE employee_id = emp_id;
+    updated_salary_param := new_sal;
+    COMMIT;
+END;
+$$;
+CALL update_salary(123, 50000.00, updated_salary);
 
 -- CASE
 SELECT
@@ -134,3 +154,7 @@ CROSS JOIN other_table;
 SELECT a.*, b.*
 FROM my_table a
 JOIN my_table b ON a.column_name = b.column_name;
+
+-- UNION
+SELECT * FROM my_table UNION ALL SELECT * FROM my_table;
+SELECT * FROM my_table UNION SELECT * FROM my_table;
