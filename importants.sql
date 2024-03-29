@@ -78,27 +78,53 @@ SELECT * FROM my_table WHERE AGE > ANY (SELECT AGE FROM my_table WHERE AGE > 10)
 
 -- PROCEDURES
 
-CREATE OR REPLACE PROCEDURE update_salary(
-    IN employee_id_param INT,
-    IN new_salary_param DECIMAL,
-    OUT updated_salary_param DECIMAL
-)
-LANGUAGE plpgsql
-AS $$
+CREATE TEMP TABLE temp_output (
+    new_salary DECIMAL(10,2),
+    passed BOOLEAN
+);
+
+CREATE OR REPLACE PROCEDURE hello_bro (
+    IN match_age INT,
+    IN new_student_age INT,
+    IN new_salary DECIMAL(10,2),
+    IN new_passed BOOLEAN,
+    OUT student_new_salary DECIMAL(10,2),
+    OUT student_passed BOOLEAN
+) LANGUAGE plpgsql AS $$
 DECLARE
-    emp_id INT;
-    new_sal DECIMAL;
+    stud_age INT;
+    stud_salary DECIMAL(10,2);
+    stud_passed BOOLEAN;
+    stud_match_age INT;
 BEGIN
-    emp_id := employee_id_param;
-    new_sal := new_salary_param; 
-    UPDATE employees
-    SET salary = new_sal
-    WHERE employee_id = emp_id;
-    updated_salary_param := new_sal;
+    stud_age := new_student_age;
+    stud_salary := new_salary;
+    stud_passed := new_passed;
+    stud_match_age := match_age;
+    
+    UPDATE my_table 
+    SET age = stud_age, 
+        salary = stud_salary, 
+        passed = stud_passed 
+    WHERE age = stud_match_age;
+    
+    student_passed := stud_passed;
+    student_new_salary := stud_salary;
     COMMIT;
-END;
-$$;
-CALL update_salary(123, 50000.00, updated_salary);
+END $$;
+
+DO $$
+DECLARE
+    stud_new_sal DECIMAL(10,2);
+    stud_new_pass BOOLEAN;
+BEGIN
+    CALL hello_bro(20, 12, 10000, false, stud_new_sal, stud_new_pass);
+    INSERT INTO temp_output(new_salary, passed) VALUES (stud_new_sal, stud_new_pass);
+    RAISE NOTICE 'New salary: %, Passed: %', stud_new_sal, stud_new_pass;
+END $$;
+
+SELECT * FROM temp_output;
+
 
 -- CASE
 SELECT
