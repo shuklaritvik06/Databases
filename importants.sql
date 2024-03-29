@@ -47,4 +47,11 @@ SELECT * FROM my_table WHERE NOT AGE IN (10,12,3);
 
 -- Update
 UPDATE my_table SET AGE=13 WHERE id=1;
+UPDATE my_table SET AGE=1;  --(set for all)
 
+-- Delete
+DELETE FROM my_table WHERE AGE=10;
+DELETE FROM my_table; --(delete all)
+
+-- Limit Offset and TOP ETC
+SELECT * FROM my_table LIMIT 2 OFFSET 1;
