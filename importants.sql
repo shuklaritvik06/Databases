@@ -275,3 +275,24 @@ JOIN my_table b ON a.column_name = b.column_name;
 -- UNION
 SELECT * FROM my_table UNION ALL SELECT * FROM my_table;
 SELECT * FROM my_table UNION SELECT * FROM my_table;
+
+-- ASSERT
+
+
+DO $$
+DECLARE
+	counter INTEGER := 1;
+BEGIN
+	LOOP
+  counter := counter+1;
+  ASSERT counter=2, 'COUNTER IS 2';
+  EXIT WHEN counter>5;
+  END LOOP;
+END $$;
+
+-- EXTRACT
+
+SELECT EXTRACT(MONTH FROM TIMESTAMP '2020-12-31 13:30:15');
+SELECT EXTRACT(DAY FROM DATE '2020-12-31');
+SELECT EXTRACT(YEAR FROM DATE '2020-12-31');
+
