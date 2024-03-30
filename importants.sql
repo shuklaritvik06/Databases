@@ -344,3 +344,33 @@ BEGIN;
 SELECT * FROM my_table;
 UPDATE my_table SET NAME='RAJESH' WHERE id=1;
 ROLLBACK;
+
+-- Indexes
+
+-- Indexes are data structures used by the database management system (DBMS) to improve the performance of queries.
+-- When you create an index on a table, the DBMS analyzes the specified columns and creates a separate data structure that allows for faster retrieval of rows based on the indexed columns.
+-- Indexes work similarly to the index at the back of a book, providing a quick way to find information without scanning every page.
+CREATE INDEX my_index ON my_table (column_name);
+
+-- TRIGGERS
+
+CREATE OR REPLACE FUNCTION my_trigger_function() RETURNS TRIGGER LANGUAGE plpgsql AS $$
+BEGIN
+    IF NEW.name <> OLD.name THEN
+        UPDATE my_table
+        SET name = NEW.name
+        WHERE id = NEW.id;    
+    END IF;
+    RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER my_triggerss
+AFTER INSERT OR UPDATE OR DELETE ON my_table
+FOR EACH ROW
+EXECUTE FUNCTION my_trigger_function();
+
+UPDATE my_table SET name='RAMESH' WHERE id=1;
+
+
+
