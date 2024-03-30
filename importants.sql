@@ -353,9 +353,11 @@ ROLLBACK;
 CREATE INDEX my_index ON my_table (column_name);
 
 -- TRIGGERS
-
 CREATE OR REPLACE FUNCTION my_trigger_function() RETURNS TRIGGER LANGUAGE plpgsql AS $$
 BEGIN
+    RAISE NOTICE 'OLD: id=%, name=%', OLD.id, OLD.name;
+    RAISE NOTICE 'NEW: id=%, name=%', NEW.id, NEW.name;
+    
     IF NEW.name <> OLD.name THEN
         UPDATE my_table
         SET name = NEW.name
@@ -365,12 +367,9 @@ BEGIN
 END;
 $$;
 
-CREATE TRIGGER my_triggerss
+CREATE TRIGGER my_trigger_is_here
 AFTER INSERT OR UPDATE OR DELETE ON my_table
 FOR EACH ROW
 EXECUTE FUNCTION my_trigger_function();
 
-UPDATE my_table SET name='RAMESH' WHERE id=1;
-
-
-
+UPDATE my_table SET name='ESH' WHERE id=1;
