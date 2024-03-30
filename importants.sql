@@ -137,6 +137,36 @@ BEGIN
     END LOOP;
 END $$;
 
+
+-- CONTINUE Statement
+DO $$
+DECLARE
+    counter INTEGER := 1;
+BEGIN
+    LOOP
+        IF counter = 3 THEN
+            counter := counter + 1;
+            CONTINUE;
+        END IF;
+        RAISE NOTICE 'Counter value: %', counter;
+        counter := counter + 1;
+        EXIT WHEN counter > 5;
+    END LOOP;
+END $$;
+
+-- Primary and Foreign Key
+CREATE TABLE parent_table (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+CREATE TABLE child_table (
+    id SERIAL PRIMARY KEY,
+    parent_id INTEGER REFERENCES parent_table(id),
+    name VARCHAR(100)
+);
+
+
 -- PROCEDURES
 
 CREATE TEMP TABLE temp_output (
