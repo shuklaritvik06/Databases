@@ -296,3 +296,51 @@ SELECT EXTRACT(MONTH FROM TIMESTAMP '2020-12-31 13:30:15');
 SELECT EXTRACT(DAY FROM DATE '2020-12-31');
 SELECT EXTRACT(YEAR FROM DATE '2020-12-31');
 
+-- EXCEPT 
+SELECT * FROM my_table EXCEPT SELECT * FROM my_table;
+
+
+-- CREATE ROLE
+CREATE ROLE my_role;
+
+-- ALTER ROLE
+ALTER ROLE my_role PASSWORD 'new_password';
+
+-- GRANT
+GRANT SELECT, INSERT, UPDATE ON my_table TO my_role;
+
+-- REVOKE
+REVOKE SELECT, INSERT, UPDATE ON my_table FROM my_role;
+
+-- ROLE MEMBERSHIP
+-- Creating roles
+CREATE ROLE role1;
+CREATE ROLE role2;
+
+-- Granting membership
+GRANT role1 TO role2;
+
+-- Revoking membership
+REVOKE role1 FROM role2;
+
+
+-- Transactions
+
+-- BEGIN;
+-- The BEGIN statement marks the start of a transaction. Any changes made to the database after BEGIN will be temporary until either COMMIT or ROLLBACK is issued.
+
+-- COMMIT;
+-- The COMMIT statement is used to permanently save the changes made during the current transaction. Once committed, the changes become permanent and visible to other transactions.
+
+-- ROLLBACK;
+-- The ROLLBACK statement is used to discard the changes made during the current transaction and restore the database to its state before the transaction began.
+
+BEGIN;
+SELECT * FROM my_table;
+UPDATE my_table SET NAME='RAKESH' WHERE id=1;
+COMMIT;
+
+BEGIN;
+SELECT * FROM my_table;
+UPDATE my_table SET NAME='RAJESH' WHERE id=1;
+ROLLBACK;
