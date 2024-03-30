@@ -95,6 +95,47 @@ SELECT * FROM my_table WHERE AGE > ANY (SELECT AGE FROM my_table WHERE AGE > 10)
 SELECT LENGTH(NAME) FROM my_table;
 SELECT CAST(NAME as VARCHAR(233)) FROM my_table;
 
+-- NULLIF()
+SELECT COALESCE(NULLIF(NAME, ''), 'RAJESH') FROM my_table;
+
+-- IF Statement
+DO $$
+DECLARE
+    name TEXT := 'RAKESH';
+BEGIN
+    IF 1 = 1 THEN
+        RAISE NOTICE 'Condition is true';
+    ELSIF name = 'RAKESH' THEN
+        RAISE NOTICE 'Condition 2 is true';
+    ELSE
+        RAISE NOTICE 'Condition is false';
+    END IF;
+END $$;
+
+
+-- LOOP Statement
+DO $$
+DECLARE
+    counter INTEGER := 1;
+BEGIN
+    LOOP
+        RAISE NOTICE 'Counter value: %', counter;
+        counter := counter + 1;
+        EXIT WHEN counter > 5;
+    END LOOP;
+END $$;
+
+
+-- WHILE LOOP
+DO $$
+DECLARE
+    counter INTEGER := 1;
+BEGIN
+    WHILE counter <= 5 LOOP
+        RAISE NOTICE 'Counter value: %', counter;
+        counter := counter + 1;
+    END LOOP;
+END $$;
 
 -- PROCEDURES
 
