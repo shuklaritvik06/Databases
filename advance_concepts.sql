@@ -98,3 +98,35 @@ FROM
   my_table;
 
 
+-- nth_value
+
+SELECT
+  NAME,
+  AGE,
+  NTH_VALUE(AGE, 2) OVER (
+    PARTITION BY
+      COURSEWORK ORDER BY AGE ASC
+    ROWS BETWEEN UNBOUNDED PRECEDING
+      AND UNBOUNDED FOLLOWING
+  ) FOURTH_AGE
+FROM
+  my_table;
+
+-- nth_tile
+
+SELECT
+  NAME,
+  CASE
+    WHEN NTILE(2) OVER (
+      PARTITION BY
+        COURSEWORK
+      ORDER BY
+        AGE ASC
+    ) = 1 THEN 'Adult'
+    ELSE 'Younger'
+  END AS age
+FROM
+  my_table;
+
+-- Pivot
+
