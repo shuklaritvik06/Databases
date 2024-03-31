@@ -48,12 +48,53 @@ SELECT
 FROM
   my_table;
 
--- Lead and Lag
-
-
-
 -- Moving Average
+SELECT AVG(salary) OVER (PARTITION BY coursework ORDER BY AGE ASC ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) FROM my_table;
 
+ -- Lead and Lag
+-- Whenever we have to deal with the rows which are coming below the current row LEAD
+-- Whenever we have to deal with the rows which are coming above the current row LAG
 
+-- LEAD
+
+SELECT
+  NAME,
+  COURSEWORK,
+  AGE,
+  LEAD(AGE) OVER (
+    PARTITION BY
+      coursework
+    ORDER BY
+      AGE ASC
+  ) AS next_age,
+  age - LEAD(age) OVER (
+    PARTITION BY
+      coursework
+    ORDER BY
+      AGE ASC
+  ) as previous_age
+FROM
+  my_table;
+
+-- LAG
+
+SELECT
+  NAME,
+  COURSEWORK,
+  AGE,
+  LAG(AGE) OVER (
+    PARTITION BY
+      coursework
+    ORDER BY
+      AGE ASC
+  ) AS prev_age,
+  age - LAG(age) OVER (
+    PARTITION BY
+      coursework
+    ORDER BY
+      AGE ASC
+  ) as difference
+FROM
+  my_table;
 
 
