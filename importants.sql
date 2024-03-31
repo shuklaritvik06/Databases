@@ -373,12 +373,3 @@ FOR EACH ROW
 EXECUTE FUNCTION my_trigger_function();
 
 UPDATE my_table SET name='ESH' WHERE id=1;
-
--- Rank, Dense Rank, row_number
-
--- Rank will give same rank to the same value and the next would be +2 rank from this
-SELECT RANK() OVER (ORDER BY AGE ASC) AS rank_age FROM my_table;
--- DENSE_RANK will give same rank to the same value and the next would be +1 rank from this
-SELECT DENSE_RANK() OVER (ORDER BY AGE ASC) AS dense_rank_age FROM my_table;
--- ROW_NUMBER will never give same rank to the same value
-SELECT ROW_NUMBER() OVER (ORDER BY AGE ASC) AS row_number_age FROM my_table;
