@@ -128,5 +128,15 @@ SELECT
 FROM
   my_table;
 
--- Pivot
+-- With CTEs
+
+WITH avg_age AS (
+    SELECT 
+			AVG(AGE) as avg_age        
+    FROM 
+        my_table
+    GROUP BY 
+        COURSEWORK
+)
+SELECT  * FROM avg_age;
 
