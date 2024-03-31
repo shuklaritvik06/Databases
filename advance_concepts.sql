@@ -47,3 +47,13 @@ SELECT
   ) AS SECOND_SALARY
 FROM
   my_table;
+
+-- Lead and Lag
+
+
+
+-- Moving Average
+
+
+
+
