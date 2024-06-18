@@ -373,3 +373,25 @@ FOR EACH ROW
 EXECUTE FUNCTION my_trigger_function();
 
 UPDATE my_table SET name='ESH' WHERE id=1;
+
+
+-- Query 1: Identifies all columns in the current database that are used by some constraint.
+-- This includes columns used in UNIQUE, PRIMARY KEY, FOREIGN KEY, and CHECK constraints.
+SELECT * FROM information_schema.constraint_column_usage;
+
+-- Query 2: Contains all constraints belonging to tables that the current user owns 
+-- or has some privilege other than SELECT on.
+-- This includes constraints like PRIMARY KEY, FOREIGN KEY, UNIQUE, and CHECK constraints.
+SELECT * FROM information_schema.table_constraints;
+
+-- Query 3: Identifies all columns in the current database that are restricted by some unique, primary key, or foreign key constraint.
+-- This specifically looks at columns involved in PRIMARY KEY, FOREIGN KEY, and UNIQUE constraints.
+SELECT * FROM information_schema.key_column_usage;
+
+-- Query 4: Contains all CHECK constraints.
+-- This query retrieves all CHECK constraints defined in the current database.
+SELECT * FROM information_schema.check_constraints;
+
+-- Query 5: Contains all DEFAULT and NOT NULL constraints.
+-- This query retrieves information on columns, including any DEFAULT values and whether the column is NOT NULL.
+SELECT * FROM information_schema.columns;
