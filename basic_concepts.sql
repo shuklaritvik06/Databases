@@ -395,3 +395,14 @@ SELECT * FROM information_schema.check_constraints;
 -- Query 5: Contains all DEFAULT and NOT NULL constraints.
 -- This query retrieves information on columns, including any DEFAULT values and whether the column is NOT NULL.
 SELECT * FROM information_schema.columns;
+
+
+-- Query 1: Select products that are more expensive than all products in the 'Electronics' category
+SELECT product_id, product_name, price
+FROM products
+WHERE price > ALL (SELECT price FROM products WHERE category = 'Electronics');
+
+-- Query 2: Select employees with a salary higher than any salary in the Sales department
+SELECT employee_id, employee_name, salary
+FROM employees
+WHERE salary > ANY (SELECT salary FROM employees WHERE department = 'Sales');
